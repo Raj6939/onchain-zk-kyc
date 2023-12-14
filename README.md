@@ -1,46 +1,36 @@
 
 ![blue modern business presentation(1)](https://github.com/Raj6939/onchain-zk-kyc/assets/67961128/d79bebb9-405c-4ffd-b7ff-302541c9725e)
 
-
-
-# Revolutionizing CrossChain KYC : Elevate Trust with Chainlink Functions and Hypersign DID for Enhanced Privacy and Zero-Knowledge Proof KYC
-
-
+# Revolutionizing CrossChain KYC: Elevate Trust with Chainlink Functions and Hypersign DID for Enhanced Privacy and Zero-Knowledge Proof KYC
 
 **Problem Statement**
 
-In the On-chain Zero-Knowledge Proof KYC (ZK-KYC) verification process, when a user submits their Zero-Knowledge Proof to the Verifier Smart Contract, the contract needs to confirm that the proof is legitimate and originates from a valid credential issued by the authorized issuer. In simpler terms, it's like the Verifier making sure that the user has provided evidence (the proof) that they have the right credentials issued by the authorized entity.
-
-
+In a Cross-chain Zero-Knowledge Proof KYC (ZK-KYC) verification system where the Issuer and Verifier operate on separate blockchains, the challenge is to ensure that when a user submits their proof to the Verifier Smart Contract, the contract can validate the legitimacy of the proof and confirm its origin and issuer's attestation from another blockchain, essentially verifying that the user possesses valid credentials issued by the authorized entity.
 
 
 **The Solution**
 
-
-To address the challenge of verifying the Issuer's attestation for the submitted ZK-Proof, we can leverage Chainlink Functions. This allows the Verifier Contract to confirm the validity of the issuer's attestation on any EVM-compatible chain. The process can be visualized through the following simplified diagram. Below is the diagram that visualizes the entire flow.
+To address the challenge of verifying the Issuer's attestation for the submitted ZK-Proof, we can leverage Chainlink Functions. This allows the Verifier Contract on EVM Chain to confirm the Issuer's attestation for the submitted proof on the Hypersign ID chain. The process can be visualized through the following simplified diagram.
 
 
 **Flow Diagram**
 
-![Screenshot from 2023-12-06 01-08-14](https://github.com/Raj6939/onchain-zk-kyc/assets/67961128/84a48506-76dc-40cc-a1e1-6dd85e7d191c)
-
-
-
+![image](https://github.com/Raj6939/onchain-zk-kyc/assets/67961128/305042fa-ec6c-443f-ba37-58f56ffb5186)
 
 
 **Sequence Diagram**
 
-![Screenshot from 2023-12-14 14-29-38](https://github.com/Raj6939/onchain-zk-kyc/assets/67961128/413a173d-3532-4eef-ac0d-fb524ba59ca1)
+![image](https://github.com/Raj6939/onchain-zk-kyc/assets/67961128/f1033545-b929-42e4-b870-30b6857341e8)
 
 
-
-
-From the above diagram,at high level, these are the steps:
-- **User Submission:** The user submits their Zero-Knowledge Proof to the Business Smart Contract in the form of Verifiable Presentation (VP).
-- **ZK-Proof Source Check**: The Businnes Contract utilizes Chainlink Functions to verify the Issuer's attestation for submitted ZK-Proof Presentation by calling Hypersign ID Network. This ensures that the ZK-Proof is associated with a valid credential issued by the authorized Issuer.
-- **ZK-Proof Authenticity Check**: Upon successful verification of VP using Chainlink functions, the Businnes Contract needs to check the authenticity of the ZK-Proof, by validating the ZK-Proof from Verifier Smart Contract.
-    
-
+From the above diagram, at a high level, these are the steps:
+- **User Submission:** The user submits their Zero-Knowledge Proof to the Business Smart Contract on the EVM chain as a Verifiable Presentation (VP).
+- **Proof Attestation Check(Cross-chain)**:
+   - The Business Contract on the EVM Chain utilizes Chainlink Functions to verify the Issuer's attestation from the Hypersign Chain for the submitted ZK-Proof Presentation.
+   - This verification is achieved by calling the Hypersign ID Network from the EVM Contract to confirm that the ZK-Proof is associated with a valid credential issued by the authorized Issuer.
+- **ZK-Proof Authenticity Check**:
+   - Following the successful verification of the Verifiable Presentation (VP) using Chainlink functions, the Business Contract proceeds to check the authenticity of the ZK-Proof.
+   - This involves validating the ZK-Proof by interacting with the Verifier Smart Contract on the EVM Chain.
 
 
 **Solidity Business Contract**
